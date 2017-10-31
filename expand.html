@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>A/Bが切り替わる</title>
+</head>
+
+<body>
+    <h1>A/Bが切り替わる</h1>
+    <nav>
+        <button>すべて</button>
+    </nav>
+
+    <p id="A">ここにすべてが表示されます</p>
+    <p id="B">すべてが表示されるといったな。あれは嘘だ。</p>
+
+    <script>
+        $(function(){
+            $('#A').addClass('is-open');
+            $('#B').css('display', 'none');
+
+            $("button").click(function () {
+                var [first, second] = $('#A').hasClass('is-open')?
+                                         [$('#A'), $('#B')] :
+                                         [$('#B'), $('#A')];
+
+                first.fadeToggle("fast",function(){
+                    second.fadeToggle("fast");
+                    first.removeClass('is-open');
+                    second.addClass('is-open');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
